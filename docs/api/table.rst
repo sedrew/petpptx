@@ -21,6 +21,22 @@ A |Table| object is added to a slide using the
    :undoc-members:
 
 
+|_ColumnCollection| objects
+---------------------------
+.. autoclass:: _ColumnCollection()
+   :members:
+   :member-order: bysource
+   :undoc-members:
+
+
+|_RowCollection| objects
+---------------------------
+.. autoclass:: _RowCollection()
+   :members:
+   :member-order: bysource
+   :undoc-members:
+
+
 |_Column| objects
 -----------------
 

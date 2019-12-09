@@ -4,6 +4,8 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+import copy
+
 from pptx.compat import is_integer
 from pptx.dml.fill import FillFormat
 from pptx.oxml.table import TcRange
@@ -494,6 +496,37 @@ class _ColumnCollection(Subshape):
         self._parent.notify_width_changed()
 
 
+    def add(self, before=-1):
+        """
+        Duplicates last column to keep formatting and resets it's cells text_frames
+        (e.g. ``column = table.columns.add()``).
+        Returns new |_Column| instance.
+        """
+        new_col = copy.deepcopy(self._tbl.tblGrid.gridCol_lst[-1])
+        self._tbl.tblGrid.append(new_col)  # copies last grid element
+
+        for tr in self._tbl.tr_lst:
+            # duplicate last cell of each row
+            new_tc = copy.deepcopy(tr.tc_lst[-1])
+            tr.insert(before, new_tc)
+
+            cell = _Cell(new_tc, tr.tc_lst)
+            cell.text = ''
+
+        return _Column(new_col, self)
+
+    def remove(self, column):
+        """
+        Removes specified *column* (e.g. ``table.columns.remove(table.columns[0])``).
+        """
+        col_idx = self._tbl.tblGrid.index(column._gridCol)
+
+        for tr in self._tbl.tr_lst:
+            tr.remove(tr.tc_lst[col_idx])
+
+        self._tbl.tblGrid.remove(column._gridCol)
+
+
 class _RowCollection(Subshape):
     """Sequence of table rows"""
 
@@ -521,3 +554,27 @@ class _RowCollection(Subshape):
         Called by a row when its height changes. Pass along to parent.
         """
         self._parent.notify_height_changed()
+
+
+    def add(self, before=-1):
+        """
+        Duplicates last row to keep formatting and resets it's cells text_frames
+        (e.g. ``row = table.rows.add()``).
+        Returns new |_Row| instance.
+        """
+        new_row = copy.deepcopy(self._tbl.tr_lst[-1])  # copies last row element
+
+        for tc in new_row.tc_lst:
+            cell = _Cell(tc, new_row.tc_lst)
+            cell.text = ''
+
+        self._tbl.insert(before, new_row)
+
+        return _Row(new_row, self)
+
+
+    def remove(self, row):
+        """
+        Removes specified *row* (e.g. ``table.rows.remove(table.rows[0])``).
+        """
+        self._tbl.remove(row._tr)

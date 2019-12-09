@@ -1,8 +1,7 @@
-.. image:: https://travis-ci.org/scanny/python-pptx.svg?branch=master
-   :target: https://travis-ci.org/scanny/python-pptx
-
-*python-pptx* is a Python library for creating and updating PowerPoint (.pptx)
+*python-pptx-valutico* is a Python library for creating and updating PowerPoint (.pptx)
 files.
+
+Basically, this is https://github.com/scanny/python-pptx, just with support for row / col adding and removing.
 
 A typical use would be generating a customized PowerPoint presentation from
 database content, downloadable by clicking a link in a web application.

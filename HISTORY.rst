@@ -3,6 +3,12 @@
 Release History
 ---------------
 
+0.6.19 (2019-12-09)
++++++++++++++++++++
+
+- Add _RowCollection.add() and .remove()
+- Add _Columnollection.add() and .remove()
+
 0.6.18 (2019-05-02)
 +++++++++++++++++++
 

@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.6.21 (2019-12-09)
++++++++++++++++++++
+
+- Fix for _RowCollection.add() to not remove text by default, in order to keep text_frame and thus styling.
+
 0.6.20 (2019-12-09)
 +++++++++++++++++++
 

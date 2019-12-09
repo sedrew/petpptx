@@ -558,15 +558,11 @@ class _RowCollection(Subshape):
 
     def add(self, insertIndex=-1, styleIndex=-1):
         """
-        Duplicates last row to keep formatting and resets it's cells text_frames
+        Duplicates row to keep formatting and resets it's cells text_frames
         (e.g. ``row = table.rows.add()``).
         Returns new |_Row| instance.
         """
-        new_row = copy.deepcopy(self._tbl.tr_lst[styleIndex])  # copies last row element
-
-        for tc in new_row.tc_lst:
-            cell = _Cell(tc, new_row.tc_lst)
-            cell.text = ''
+        new_row = copy.deepcopy(self._tbl.tr_lst[styleIndex])  # copies row element with styleIndex
 
         self._tbl.insert(insertIndex, new_row)
 

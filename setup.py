@@ -38,7 +38,7 @@ KEYWORDS = "powerpoint ppt pptx office open xml"
 AUTHOR = "Andreas Steiner"
 AUTHOR_EMAIL = "a.steiner@valutico.ai"
 URL = "https://github.com/AndreasSteiner/python-pptx"
-LICENSE = license
+LICENSE = "MIT License"
 PACKAGES = find_packages(exclude=["tests", "tests.*"])
 PACKAGE_DATA = {"pptx": ["templates/*"]}
 

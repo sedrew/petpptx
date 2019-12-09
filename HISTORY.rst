@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.6.20 (2019-12-09)
++++++++++++++++++++
+
+- Added StyleIndex param to _RowCollection.add() in order to avoid always copying the last row.
+
 0.6.19 (2019-12-09)
 +++++++++++++++++++
 

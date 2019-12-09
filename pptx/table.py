@@ -556,19 +556,19 @@ class _RowCollection(Subshape):
         self._parent.notify_height_changed()
 
 
-    def add(self, before=-1):
+    def add(self, insertIndex=-1, styleIndex=-1):
         """
         Duplicates last row to keep formatting and resets it's cells text_frames
         (e.g. ``row = table.rows.add()``).
         Returns new |_Row| instance.
         """
-        new_row = copy.deepcopy(self._tbl.tr_lst[-1])  # copies last row element
+        new_row = copy.deepcopy(self._tbl.tr_lst[styleIndex])  # copies last row element
 
         for tc in new_row.tc_lst:
             cell = _Cell(tc, new_row.tc_lst)
             cell.text = ''
 
-        self._tbl.insert(before, new_row)
+        self._tbl.insert(insertIndex, new_row)
 
         return _Row(new_row, self)
 

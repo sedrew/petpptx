@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.6.22 (2019-12-18)
++++++++++++++++++++
+
+- Added 'move_slide()' property to presentation in order to allow moving a slide from one index to another.
+
 0.6.21 (2019-12-09)
 +++++++++++++++++++
 

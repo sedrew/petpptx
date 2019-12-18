@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.6.23 (2019-12-18)
++++++++++++++++++++
+
+- Removed @property from 'move_slide()' in order to fix some important edge cases.
+
 0.6.22 (2019-12-18)
 +++++++++++++++++++
 

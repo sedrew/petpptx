@@ -2,17 +2,17 @@
 
 """Initialization module for python-pptx package."""
 
-__version__ = "0.6.23"
+__version__ = "0.6.24"
 
+
+import sys
 
 import pptx.exc as exceptions
-import sys
 
 sys.modules["pptx.exceptions"] = exceptions
 del sys
 
 from pptx.api import Presentation  # noqa
-
 from pptx.opc.constants import CONTENT_TYPE as CT  # noqa: E402
 from pptx.opc.package import PartFactory  # noqa: E402
 from pptx.parts.chart import ChartPart  # noqa: E402
@@ -20,13 +20,7 @@ from pptx.parts.coreprops import CorePropertiesPart  # noqa: E402
 from pptx.parts.image import ImagePart  # noqa: E402
 from pptx.parts.media import MediaPart  # noqa: E402
 from pptx.parts.presentation import PresentationPart  # noqa: E402
-from pptx.parts.slide import (  # noqa: E402
-    NotesMasterPart,
-    NotesSlidePart,
-    SlideLayoutPart,
-    SlideMasterPart,
-    SlidePart,
-)
+from pptx.parts.slide import NotesMasterPart, NotesSlidePart, SlideLayoutPart, SlideMasterPart, SlidePart  # noqa: E402
 
 content_type_to_part_class_map = {
     CT.PML_PRESENTATION_MAIN: PresentationPart,

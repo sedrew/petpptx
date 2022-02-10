@@ -3,27 +3,49 @@
 Release History
 ---------------
 
-0.6.23 (2019-12-18)
+0.6.21 (2021-09-20)
++++++++++++++++++++
+
+- Fix #741 _DirPkgReader must implement .__contains__()
+
+
+0.6.20 (2021-09-14)
++++++++++++++++++++
+
+- Fix #206 accommodate NULL target-references in relationships.
+- Fix #223 escape image filename that appears as literal in XML.
+- Fix #517 option to display chart categories/values in reverse order.
+- Major refactoring of ancient package loading code.
+
+
+0.6.19 (2021-05-17)
++++++++++++++++++++
+
+- Add shapes.add_ole_object(), allowing arbitrary Excel or other binary file to be
+  embedded as a shape on a slide. The OLE object is represented as an icon.
+
+
+0.6.18.5 (2019-12-18)
 +++++++++++++++++++
 
 - Removed @property from 'move_slide()' in order to fix some important edge cases.
 
-0.6.22 (2019-12-18)
+0.6.18.4 (2019-12-18)
 +++++++++++++++++++
 
 - Added 'move_slide()' property to presentation in order to allow moving a slide from one index to another.
 
-0.6.21 (2019-12-09)
+0.6.18.3 (2019-12-09)
 +++++++++++++++++++
 
 - Fix for _RowCollection.add() to not remove text by default, in order to keep text_frame and thus styling.
 
-0.6.20 (2019-12-09)
+0.6.18.2 (2019-12-09)
 +++++++++++++++++++
 
 - Added StyleIndex param to _RowCollection.add() in order to avoid always copying the last row.
 
-0.6.19 (2019-12-09)
+0.6.18.1 (2019-12-09)
 +++++++++++++++++++
 
 - Add _RowCollection.add() and .remove()

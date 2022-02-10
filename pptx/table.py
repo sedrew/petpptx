@@ -2,8 +2,6 @@
 
 """Table-related objects such as Table and Cell."""
 
-from __future__ import absolute_import, division, print_function, unicode_literals
-
 import copy
 
 from pptx.compat import is_integer
@@ -36,10 +34,10 @@ class Table(object):
 
     @lazyproperty
     def columns(self):
-        """
-        Read-only reference to collection of |_Column| objects representing
-        the table's columns. |_Column| objects are accessed using list
-        notation, e.g. ``col = tbl.columns[0]``.
+        """|_ColumnCollection| instance for this table.
+
+        Provides access to |_Column| objects representing the table's columns. |_Column|
+        objects are accessed using list notation, e.g. ``col = tbl.columns[0]``.
         """
         return _ColumnCollection(self._tbl, self)
 
@@ -139,10 +137,10 @@ class Table(object):
 
     @lazyproperty
     def rows(self):
-        """
-        Read-only reference to collection of |_Row| objects representing the
-        table's rows. |_Row| objects are accessed using list notation, e.g.
-        ``col = tbl.rows[0]``.
+        """|_RowCollection| instance for this table.
+
+        Provides access to |_Row| objects representing the table's rows. |_Row| objects
+        are accessed using list notation, e.g. ``col = tbl.rows[0]``.
         """
         return _RowCollection(self._tbl, self)
 
@@ -323,9 +321,7 @@ class _Cell(Subshape):
         with `.is_merge_origin` before calling.
         """
         if not self.is_merge_origin:
-            raise ValueError(
-                "not a merge-origin cell; only a merge-origin cell can be sp" "lit"
-            )
+            raise ValueError("not a merge-origin cell; only a merge-origin cell can be sp" "lit")
 
         tc_range = TcRange.from_merge_origin(self._tc)
 
@@ -495,7 +491,6 @@ class _ColumnCollection(Subshape):
         """
         self._parent.notify_width_changed()
 
-
     def add(self, before=-1):
         """
         Duplicates last column to keep formatting and resets it's cells text_frames
@@ -511,7 +506,7 @@ class _ColumnCollection(Subshape):
             tr.insert(before, new_tc)
 
             cell = _Cell(new_tc, tr.tc_lst)
-            cell.text = ''
+            cell.text = ""
 
         return _Column(new_col, self)
 
@@ -555,7 +550,6 @@ class _RowCollection(Subshape):
         """
         self._parent.notify_height_changed()
 
-
     def add(self, insertIndex=-1, styleIndex=-1):
         """
         Duplicates row to keep formatting and resets it's cells text_frames
@@ -567,7 +561,6 @@ class _RowCollection(Subshape):
         self._tbl.insert(insertIndex, new_row)
 
         return _Row(new_row, self)
-
 
     def remove(self, row):
         """

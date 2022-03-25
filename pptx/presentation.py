@@ -1,7 +1,9 @@
 # encoding: utf-8
 
 """Main presentation object."""
+import copy
 
+from pptx.opc.package import _Relationships
 from pptx.shared import PartElementProxy
 from pptx.slide import SlideMasters, Slides
 from pptx.util import lazyproperty
@@ -111,3 +113,24 @@ class Presentation(PartElementProxy):
         slideList = list(slideIDs)
         slideIDs.remove(slideList[currID])
         slideIDs.insert(newID, slideList[currID])
+
+    def copy_slide(self, source_index, target_index):
+        # Append slide with source's layout. Then delete shapes to get a blank slide
+        source = self.slides[source_index]
+        dest = self.slides.add_slide(source.slide_layout)
+        for shp in dest.shapes:
+            shp.element.getparent().remove(shp.element)
+        # Copy shapes from source, in order
+        for shape in source.shapes:
+            new_shape = copy.deepcopy(shape.element)
+            dest.shapes._spTree.insert_element_before(new_shape, "p:extLst")
+        # Copy rels from source
+        for rel in source.part.rels:
+            _rels: _Relationships = dest.part.rels
+            if not rel.is_external:
+                _rels.get_or_add(rel.reltype, rel._target)
+            else:
+                _rels.get_or_add_ext_rel(rel.reltype, rel._target)
+        # Move appended slide into target_index
+        self.slides.element.insert(target_index, self.slides.element[-1])
+        return dest

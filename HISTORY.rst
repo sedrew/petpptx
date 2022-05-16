@@ -3,6 +3,11 @@
 Release History
 ---------------
 
+0.6.24.2 (2022-05-16)
++++++++++++++++++++
+
+- Expand namespaces in ns.py to allow a wider variety of shapes to be used.
+
 0.6.21 (2021-09-20)
 +++++++++++++++++++
 

@@ -2,7 +2,7 @@
 
 """Initialization module for python-pptx package."""
 
-__version__ = "0.6.24.1"
+__version__ = "0.6.24.2"
 
 
 import sys

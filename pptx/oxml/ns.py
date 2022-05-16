@@ -6,44 +6,63 @@ Namespace related objects.
 
 from __future__ import absolute_import
 
-
 #: Maps namespace prefix to namespace name for all known PowerPoint XML
 #: namespaces.
 _nsmap = {
     "a": ("http://schemas.openxmlformats.org/drawingml/2006/main"),
+    "aink": ("http://schemas.microsoft.com/office/drawing/2016/ink"),
+    "am3d": ("http://schemas.microsoft.com/office/drawing/2017/model3d"),
     "c": ("http://schemas.openxmlformats.org/drawingml/2006/chart"),
-    "cp": (
-        "http://schemas.openxmlformats.org/package/2006/metadata/core-pro" "perties"
-    ),
+    "cp": ("http://schemas.openxmlformats.org/package/2006/metadata/core-pro" "perties"),
     "ct": ("http://schemas.openxmlformats.org/package/2006/content-types"),
+    "cx": ("http://schemas.microsoft.com/office/drawing/2014/chartex"),
+    "cx1": ("http://schemas.microsoft.com/office/drawing/2015/9/8/chartex"),
+    "cx2": ("http://schemas.microsoft.com/office/drawing/2015/10/21/chartex"),
+    "cx3": ("http://schemas.microsoft.com/office/drawing/2016/5/9/chartex"),
+    "cx4": ("http://schemas.microsoft.com/office/drawing/2016/5/10/chartex"),
+    "cx5": ("http://schemas.microsoft.com/office/drawing/2016/5/11/chartex"),
+    "cx6": ("http://schemas.microsoft.com/office/drawing/2016/5/12/chartex"),
+    "cx7": ("http://schemas.microsoft.com/office/drawing/2016/5/13/chartex"),
+    "cx8": ("http://schemas.microsoft.com/office/drawing/2016/5/14/chartex"),
     "dc": ("http://purl.org/dc/elements/1.1/"),
     "dcmitype": ("http://purl.org/dc/dcmitype/"),
     "dcterms": ("http://purl.org/dc/terms/"),
-    "ep": (
-        "http://schemas.openxmlformats.org/officeDocument/2006/extended-p" "roperties"
-    ),
-    "i": (
-        "http://schemas.openxmlformats.org/officeDocument/2006/relationsh" "ips/image"
-    ),
+    "dgm": "http://schemas.openxmlformats.org/drawingml/2006/diagram",
+    "ep": ("http://schemas.openxmlformats.org/officeDocument/2006/extended-p" "roperties"),
+    "i": ("http://schemas.openxmlformats.org/officeDocument/2006/relationsh" "ips/image"),
     "m": ("http://schemas.openxmlformats.org/officeDocument/2006/math"),
+    "mc": ("http://schemas.openxmlformats.org/markup-compatibility/2006"),
     "mo": ("http://schemas.microsoft.com/office/mac/office/2008/main"),
     "mv": ("urn:schemas-microsoft-com:mac:vml"),
     "o": ("urn:schemas-microsoft-com:office:office"),
+    "oel": ("http://schemas.microsoft.com/office/2019/extlst"),
     "p": ("http://schemas.openxmlformats.org/presentationml/2006/main"),
     "pd": ("http://schemas.openxmlformats.org/drawingml/2006/presentationDra" "wing"),
     "pic": ("http://schemas.openxmlformats.org/drawingml/2006/picture"),
     "pr": ("http://schemas.openxmlformats.org/package/2006/relationships"),
     "r": ("http://schemas.openxmlformats.org/officeDocument/2006/relationsh" "ips"),
-    "sl": (
-        "http://schemas.openxmlformats.org/officeDocument/2006/relationsh"
-        "ips/slideLayout"
-    ),
+    "sl": ("http://schemas.openxmlformats.org/officeDocument/2006/relationsh" "ips/slideLayout"),
     "v": ("urn:schemas-microsoft-com:vml"),
     "ve": ("http://schemas.openxmlformats.org/markup-compatibility/2006"),
     "w": ("http://schemas.openxmlformats.org/wordprocessingml/2006/main"),
     "w10": ("urn:schemas-microsoft-com:office:word"),
     "wne": ("http://schemas.microsoft.com/office/word/2006/wordml"),
-    "wp": ("http://schemas.openxmlformats.org/drawingml/2006/wordprocessingD" "rawing"),
+    "wp": ("http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"),
+    "wpc": ("http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"),
+    "wpg": ("http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"),
+    "wpi": ("http://schemas.microsoft.com/office/word/2010/wordprocessingInk"),
+    "wps": ("http://schemas.microsoft.com/office/word/2010/wordprocessingShape"),
+    "w10": ("urn:schemas-microsoft-com:office:word"),
+    "w14": ("http://schemas.microsoft.com/office/word/2010/wordml"),
+    "w15": ("http://schemas.microsoft.com/office/word/2012/wordml"),
+    "w16": ("http://schemas.microsoft.com/office/word/2018/wordml"),
+    "w16cex": ("http://schemas.microsoft.com/office/word/2018/wordml/cex"),
+    "w16cid": ("http://schemas.microsoft.com/office/word/2016/wordml/cid"),
+    "w16sdtdh": ("http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash"),
+    "w16se": ("http://schemas.microsoft.com/office/word/2015/wordml/symex"),
+    "wp14": ("http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"),
+    "wpwp14": ("http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"),
+    "xml": ("http://www.w3.org/XML/1998/namespace"),
     "xsi": ("http://www.w3.org/2001/XMLSchema-instance"),
 }
 

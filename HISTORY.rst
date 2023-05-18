@@ -2,6 +2,10 @@
 
 Release History
 ---------------
+0.6.24.3 (2023-05-18)
++++++++++++++++++++
+
+- Fix issue with broken presentation after copy slide
 
 0.6.24.2 (2022-05-16)
 +++++++++++++++++++

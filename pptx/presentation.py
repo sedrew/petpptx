@@ -127,9 +127,7 @@ class Presentation(PartElementProxy):
         # Copy rels from source
         for rel in source.part.rels:
             _rels: _Relationships = dest.part.rels
-            if not rel.is_external:
-                _rels.get_or_add(rel.reltype, rel._target)
-            else:
+            if rel.is_external:
                 _rels.get_or_add_ext_rel(rel.reltype, rel._target)
         # Move appended slide into target_index
         self.slides.element.insert(target_index, self.slides.element[-1])

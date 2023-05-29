@@ -31,14 +31,14 @@ license = ascii_bytes_from(thisdir, "LICENSE")
 version = re.search(r'__version__ = "([^"]+)"', init_py).group(1)
 
 
-NAME = "python-pptx"
+NAME = "python-pptx-valutico"
 VERSION = version
 DESCRIPTION = "Generate and manipulate Open XML PowerPoint (.pptx) files"
 KEYWORDS = "powerpoint ppt pptx office open xml"
-AUTHOR = "Steve Canny"
-AUTHOR_EMAIL = "python-pptx@googlegroups.com"
-URL = "http://github.com/scanny/python-pptx"
-LICENSE = license
+AUTHOR = "Andreas Steiner"
+AUTHOR_EMAIL = "a.steiner@valutico.ai"
+URL = "https://github.com/AndreasSteiner/python-pptx"
+LICENSE = "MIT License"
 PACKAGES = find_packages(exclude=["tests", "tests.*"])
 PACKAGE_DATA = {"pptx": ["templates/*"]}
 
@@ -72,6 +72,7 @@ params = {
     "description": DESCRIPTION,
     "keywords": KEYWORDS,
     "long_description": LONG_DESCRIPTION,
+    "long_description_content_type": "text/markdown",
     "author": AUTHOR,
     "author_email": AUTHOR_EMAIL,
     "url": URL,

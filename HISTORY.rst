@@ -2,6 +2,15 @@
 
 Release History
 ---------------
+0.6.24.3 (2023-05-18)
++++++++++++++++++++
+
+- Fix issue with broken presentation after copy slide
+
+0.6.24.2 (2022-05-16)
++++++++++++++++++++
+
+- Expand namespaces in ns.py to allow a wider variety of shapes to be used.
 
 0.6.21 (2021-09-20)
 +++++++++++++++++++
@@ -24,6 +33,32 @@ Release History
 - Add shapes.add_ole_object(), allowing arbitrary Excel or other binary file to be
   embedded as a shape on a slide. The OLE object is represented as an icon.
 
+
+0.6.18.5 (2019-12-18)
++++++++++++++++++++
+
+- Removed @property from 'move_slide()' in order to fix some important edge cases.
+
+0.6.18.4 (2019-12-18)
++++++++++++++++++++
+
+- Added 'move_slide()' property to presentation in order to allow moving a slide from one index to another.
+
+0.6.18.3 (2019-12-09)
++++++++++++++++++++
+
+- Fix for _RowCollection.add() to not remove text by default, in order to keep text_frame and thus styling.
+
+0.6.18.2 (2019-12-09)
++++++++++++++++++++
+
+- Added StyleIndex param to _RowCollection.add() in order to avoid always copying the last row.
+
+0.6.18.1 (2019-12-09)
++++++++++++++++++++
+
+- Add _RowCollection.add() and .remove()
+- Add _Columnollection.add() and .remove()
 
 0.6.18 (2019-05-02)
 +++++++++++++++++++

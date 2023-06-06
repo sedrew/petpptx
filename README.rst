@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/pypi/pyversions/petpptx.svg
-   :target: https://github.com/pydantic/pydantic
+   :target: https://github.com/sedrew/petpptx
 .. image:: https://img.shields.io/github/license/sedrew/petpptx.svg
    :target: https://github.com/sedrew/python-petpptx/blob/master/LICENSE
    

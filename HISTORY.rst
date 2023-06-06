@@ -3,6 +3,13 @@
 Release History
 ---------------
 
+1.0.0 (2023-06-06)
++++++++++++++++++++
+
+- Release of a new version of the project
+- Add setter for font in Run
+
+
 0.6.21 (2021-09-20)
 +++++++++++++++++++
 

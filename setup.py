@@ -31,13 +31,13 @@ license = ascii_bytes_from(thisdir, "LICENSE")
 version = re.search(r'__version__ = "([^"]+)"', init_py).group(1)
 
 
-NAME = "python-pptx"
+NAME = "python-petpptx"
 VERSION = version
 DESCRIPTION = "Generate and manipulate Open XML PowerPoint (.pptx) files"
 KEYWORDS = "powerpoint ppt pptx office open xml"
-AUTHOR = "Steve Canny"
-AUTHOR_EMAIL = "python-pptx@googlegroups.com"
-URL = "http://github.com/scanny/python-pptx"
+AUTHOR = "Sergey Malygin"
+AUTHOR_EMAIL = "maligin.serega2010@yndex.ru"
+URL = "https://github.com/sedrew/python-petpptx"
 LICENSE = license
 PACKAGES = find_packages(exclude=["tests", "tests.*"])
 PACKAGE_DATA = {"pptx": ["templates/*"]}

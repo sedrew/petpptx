@@ -3,12 +3,17 @@
 Release History
 ---------------
 
+1.0.1 (2023-06-06)
++++++++++++++++++++
+
+- Fix module 'collections' has no attribute 'Container' for latest python 3.10
+
+
 1.0.0 (2023-06-06)
 +++++++++++++++++++
 
 - Release of a new version of the project
 - Add setter for font in Run
-- Fix module 'collections' has no attribute 'Container' for latest python 3.10
 
 
 0.6.21 (2021-09-20)

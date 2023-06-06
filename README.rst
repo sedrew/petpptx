@@ -1,6 +1,8 @@
-.. image:: https://travis-ci.org/scanny/python-pptx.svg?branch=master
-   :target: https://travis-ci.org/scanny/python-pptx
-
+.. image:: https://img.shields.io/pypi/pyversions/python-petpptx.svg
+   :target: https://github.com/pydantic/pydantic
+.. image:: https://img.shields.io/github/license/sedrew/python-petpptx.svg
+   :target: https://github.com/sedrew/python-petpptx/blob/master/LICENSE
+   
 *python-petpptx* is a Python library for creating and updating PowerPoint (.pptx) files.
 
 This is a fork of the `python-pptx`_ project, it has not been updated for a long time, a lot of bugs have been accumulated during this time, and for the use of new features I had to look in all forks of this project.

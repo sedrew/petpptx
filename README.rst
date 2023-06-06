@@ -1,21 +1,18 @@
 .. image:: https://travis-ci.org/scanny/python-pptx.svg?branch=master
    :target: https://travis-ci.org/scanny/python-pptx
 
-*python-pptx* is a Python library for creating and updating PowerPoint (.pptx)
-files.
+*python-petpptx* is a Python library for creating and updating PowerPoint (.pptx) files.
 
-A typical use would be generating a customized PowerPoint presentation from
-database content, downloadable by clicking a link in a web application.
-Several developers have used it to automate production of presentation-ready
-engineering status reports based on information held in their work management
-system. It could also be used for making bulk updates to a library of
-presentations or simply to automate the production of a slide or two that
-would be tedious to get right by hand.
-
-More information is available in the `python-pptx documentation`_.
+This is a fork of the `python-pptx`_ project, it has not been updated for a long time, a lot of bugs have been accumulated during this time, and for the use of new features I had to look in all forks of this project.
+I've been using it a lot lately in my work, so I'm adding all the features I need here.
+Feel free to open PR and ask your questions.
+To explore the possibilities, you can use the old  `python-pptx documentation`_.
 
 Browse `examples with screenshots`_ to get a quick idea what you can do with
 python-pptx.
+
+.. _`python-pptx`:
+   https://github.com/scanny/python-pptx/
 
 .. _`python-pptx documentation`:
    https://python-pptx.readthedocs.org/en/latest/

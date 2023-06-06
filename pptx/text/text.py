@@ -683,6 +683,10 @@ class _Run(Subshape):
         rPr = self._r.get_or_add_rPr()
         return Font(rPr)
 
+    @font.setter
+    def font(self, font):
+        self._r.insert(0, font._rPr)
+
     @lazyproperty
     def hyperlink(self):
         """

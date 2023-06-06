@@ -5,8 +5,9 @@
 __version__ = "1.0.0"
 
 
-import pptx.exc as exceptions
 import sys
+
+import pptx.exc as exceptions
 
 sys.modules["pptx.exceptions"] = exceptions
 del sys

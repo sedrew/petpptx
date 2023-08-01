@@ -3,6 +3,13 @@
 Release History
 ---------------
 
+
+1.0.2 (2023-08-01)
++++++++++++++++++++
+
+- Add `shape.visible` property returns or sets the visibility of the specified object
+
+
 1.0.2 (2023-06-06)
 +++++++++++++++++++
 

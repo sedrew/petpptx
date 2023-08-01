@@ -168,6 +168,13 @@ class BaseShapeElement(BaseOxmlElement):
         return self._nvXxPr.cNvPr.name
 
     @property
+    def hidden(self):
+        value = self._nvXxPr.cNvPr.get('hidden', None)
+        if value:
+            return XsdBoolean.convert_from_xml(value)
+        return False
+
+    @property
     def txBody(self):
         """
         Child ``<p:txBody>`` element, None if not present

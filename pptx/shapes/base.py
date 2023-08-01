@@ -8,6 +8,7 @@ from pptx.action import ActionSetting
 from pptx.dml.effect import ShadowFormat
 from pptx.shared import ElementProxy
 from pptx.util import lazyproperty
+from pptx.oxml.simpletypes import XsdBoolean
 
 
 class BaseShape(object):
@@ -220,6 +221,18 @@ class BaseShape(object):
     @width.setter
     def width(self, value):
         self._element.cx = value
+
+    @property
+    def visible(self):
+        """
+        Read/write. Returns or sets the visibility of the specified object or the formatting applied
+        to the specified object.
+        """
+        return not self._element.hidden
+
+    @visible.setter
+    def visible(self, value):
+        self._element._nvXxPr.cNvPr.set('hidden', XsdBoolean.convert_to_xml(not value))
 
 
 class _PlaceholderFormat(ElementProxy):

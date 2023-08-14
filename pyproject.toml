@@ -39,7 +39,7 @@ content-type = "text/x-rst"
 Homepage = "https://github.com/sedrew/petpptx"
 Source = "https://github.com/sedrew/petpptx"
 Documentation = ""
-Changelog = "HISTORY.rst"
+Changelog = "CHANGES.rst"
 
 [project.optional-dependencies]
 docs = [

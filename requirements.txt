@@ -6,3 +6,4 @@ Pillow>=3.3.2
 pyparsing>=2.0.1
 pytest>=2.5
 XlsxWriter>=0.5.7
+xsdata==23.8

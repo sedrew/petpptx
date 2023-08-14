@@ -36,7 +36,7 @@ VERSION = version
 DESCRIPTION = "Generate and manipulate Open XML PowerPoint (.pptx) files"
 KEYWORDS = "powerpoint ppt pptx office open xml"
 AUTHOR = "Sergey Malygin"
-AUTHOR_EMAIL = "maligin.serega2010@yndex.ru"
+AUTHOR_EMAIL = "maligin.serega2010@yandex.ru"
 URL = "https://github.com/sedrew/petpptx"
 LICENSE = license
 PACKAGES = find_packages(exclude=["tests", "tests.*"])

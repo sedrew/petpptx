@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "petpptx"
+description = "Generate and manipulate Open XML PowerPoint (.pptx) files"
+authors = [{name = "Sergey Malygin", email = "maligin.serega2010@yandex.ru"}]
+license = {text = "MIT"}
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Text Processing :: Markup :: XML",
+]
+keywords = ["xml", "dataclasses", "generator", "pptx", "powerpoint"]
+requires-python = ">=3.8"
+dependencies = [
+    "typing-extensions",
+]
+dynamic = ["version"]
+
+[project.readme]
+file = "README.rst"
+content-type = "text/x-rst"
+
+[project.urls]
+Homepage = "https://github.com/sedrew/petpptx"
+Source = "https://github.com/sedrew/petpptx"
+Documentation = ""
+Changelog = "HISTORY.rst"
+
+[project.optional-dependencies]
+docs = [
+    "furo",
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-autodoc-typehints",
+    "sphinx-copybutton",
+    "sphinx-inline-tabs",
+]
+lxml = ["lxml>=4.4.1"]
+soap = ["requests"]
+test = [
+    "pre-commit",
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov",
+]
+
+[project.scripts]
+pptx = "pptx.__main__:main"
+
+[tool.setuptools]
+include-package-data = true
+license-files = ["LICENSE"]
+
+[tool.setuptools.dynamic]
+version = {attr = "pptx.__version__"}
+
+[tool.doc8]
+max-line-length = 88
+
+[tool.pytest.ini_options]
+addopts = "--color=yes --benchmark-skip"

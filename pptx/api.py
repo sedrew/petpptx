@@ -10,28 +10,32 @@ be named as internal (leading underscore).
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import os
+from io import BytesIO
+from pathlib import Path
 
 from .opc.constants import CONTENT_TYPE as CT
+from .opc.packuri import PackURI
 from .package import Package
+from .presentation import Presentation
 
 
-def Presentation(pptx=None):
+def presentation(pptx: str | Path | BytesIO = None) -> Presentation:
     """
     Return a |Presentation| object loaded from *pptx*, where *pptx* can be
     either a path to a ``.pptx`` file (a string) or a file-like object. If
     *pptx* is missing or ``None``, the built-in default presentation
     "template" is loaded.
     """
+    pkg = Package()
     if pptx is None:
-        pptx = _default_pptx_path()
+        pkg.create_presentation()
+    pkg.open_presentation(pptx)
 
-    presentation_part = Package.open(pptx).main_document_part
+    # if not _is_pptx_package(presentation_part):
+    #     tmpl = "file '%s' is not a PowerPoint file, content type is '%s'"
+    #     raise ValueError(tmpl % (pptx, presentation_part.content_type))
 
-    if not _is_pptx_package(presentation_part):
-        tmpl = "file '%s' is not a PowerPoint file, content type is '%s'"
-        raise ValueError(tmpl % (pptx, presentation_part.content_type))
-
-    return presentation_part.presentation
+    return Presentation(pkg=pkg, model=pkg.get_model(PackURI("/ppt/presentation.xml")))
 
 
 def _default_pptx_path():

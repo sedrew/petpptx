@@ -11,8 +11,8 @@ from xml.sax.saxutils import escape
 
 from ..compat import to_unicode
 from ..enum.chart import XL_CHART_TYPE
-from ..oxml import parse_xml
-from ..oxml.ns import nsdecls
+from ..models import parse_xml
+from ..models.ns import nsdecls
 
 
 def ChartXmlWriter(chart_type, chart_data):

@@ -9,7 +9,7 @@ from pptx.chart.marker import Marker
 from pptx.chart.point import BubblePoints, CategoryPoints, XyPoints
 from pptx.compat import Sequence
 from pptx.dml.chtfmt import ChartFormat
-from pptx.oxml.ns import qn
+from pptx.models.ns import qn
 from pptx.util import lazyproperty
 
 

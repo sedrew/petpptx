@@ -4,7 +4,7 @@
 
 from pptx.compat import is_integer
 from pptx.dml.fill import FillFormat
-from pptx.oxml.table import TcRange
+from pptx.models.table import TcRange
 from pptx.shapes import Subshape
 from pptx.text.text import TextFrame
 from pptx.util import lazyproperty

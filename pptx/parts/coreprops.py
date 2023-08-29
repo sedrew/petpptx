@@ -7,7 +7,6 @@ from datetime import datetime
 from pptx.opc.constants import CONTENT_TYPE as CT
 from pptx.opc.package import XmlPart
 from pptx.opc.packuri import PackURI
-from pptx.oxml.coreprops import CT_CoreProperties
 
 
 class CorePropertiesPart(XmlPart):
@@ -156,6 +155,5 @@ class CorePropertiesPart(XmlPart):
         return CorePropertiesPart(
             PackURI("/docProps/core.xml"),
             CT.OPC_CORE_PROPERTIES,
-            package,
-            CT_CoreProperties.new_coreProperties(),
+            package
         )

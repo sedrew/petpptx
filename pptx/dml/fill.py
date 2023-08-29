@@ -7,7 +7,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from pptx.compat import Sequence
 from pptx.dml.color import ColorFormat
 from pptx.enum.dml import MSO_FILL
-from pptx.oxml.dml.fill import (
+from pptx.models.dml.fill import (
     CT_BlipFillProperties,
     CT_GradientFillProperties,
     CT_GroupFillProperties,

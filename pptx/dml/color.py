@@ -7,7 +7,7 @@ DrawingML objects related to color, ColorFormat being the most prominent.
 from __future__ import absolute_import, print_function, unicode_literals
 
 from ..enum.dml import MSO_COLOR_TYPE, MSO_THEME_COLOR
-from ..oxml.dml.color import (
+from ..models.dml.color import (
     CT_HslColor,
     CT_PresetColor,
     CT_SchemeColor,

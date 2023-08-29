@@ -2,24 +2,26 @@
 
 """Slide-related objects, including masters, layouts, and notes."""
 
-from pptx.dml.fill import FillFormat
-from pptx.enum.shapes import PP_PLACEHOLDER
-from pptx.shapes.shapetree import (
-    LayoutPlaceholders,
-    LayoutShapes,
-    MasterPlaceholders,
-    MasterShapes,
-    NotesSlidePlaceholders,
-    NotesSlideShapes,
-    SlidePlaceholders,
-    SlideShapes,
-)
+# from pptx.dml.fill import FillFormat
+# from pptx.shapes.shapetree import (
+#     LayoutPlaceholders,
+#     LayoutShapes,
+#     MasterPlaceholders,
+#     MasterShapes,
+#     NotesSlidePlaceholders,
+#     NotesSlideShapes,
+#     SlidePlaceholders,
+#     SlideShapes,
+# )
 from pptx.shared import ElementProxy, ParentedElementProxy, PartElementProxy
 from pptx.util import lazyproperty
 
 
-class _BaseSlide(PartElementProxy):
+class _BaseSlide:
     """Base class for slide objects, including masters, layouts and notes."""
+
+    def __init__(self):
+        pass
 
     @lazyproperty
     def background(self):
@@ -31,7 +33,7 @@ class _BaseSlide(PartElementProxy):
         The same |_Background| object is returned on every call for the same
         slide object.
         """
-        return _Background(self._element.cSld)
+        return
 
     @property
     def name(self):
@@ -40,12 +42,11 @@ class _BaseSlide(PartElementProxy):
         string (`''`) if no name is assigned. Assigning an empty string or
         |None| to this property causes any name to be removed.
         """
-        return self._element.cSld.name
+        return
 
     @name.setter
     def name(self, value):
-        new_value = "" if value is None else value
-        self._element.cSld.name = new_value
+        pass
 
 
 class _BaseMaster(_BaseSlide):
@@ -60,7 +61,7 @@ class _BaseMaster(_BaseSlide):
         Instance of |MasterPlaceholders| containing sequence of placeholder
         shapes in this master, sorted in *idx* order.
         """
-        return MasterPlaceholders(self._element.spTree, self)
+        return
 
     @lazyproperty
     def shapes(self):
@@ -68,7 +69,7 @@ class _BaseMaster(_BaseSlide):
         Instance of |MasterShapes| containing sequence of shape objects
         appearing on this slide.
         """
-        return MasterShapes(self._element.spTree, self)
+        return
 
 
 class NotesMaster(_BaseMaster):
@@ -99,18 +100,8 @@ class NotesSlide(_BaseSlide):
             should be cloned to a notes slide when the a new notes slide is
             created.
             """
-            cloneable = (
-                PP_PLACEHOLDER.SLIDE_IMAGE,
-                PP_PLACEHOLDER.BODY,
-                PP_PLACEHOLDER.SLIDE_NUMBER,
-            )
-            for placeholder in notes_master.placeholders:
-                if placeholder.element.ph_type in cloneable:
-                    yield placeholder
-
-        shapes = self.shapes
-        for placeholder in iter_cloneable_placeholders(notes_master):
-            shapes.clone_placeholder(placeholder)
+            pass
+        pass
 
     @property
     def notes_placeholder(self):
@@ -121,9 +112,6 @@ class NotesSlide(_BaseSlide):
         notes master does not have a body placeholder, or if the notes
         placeholder has been deleted from the notes slide.
         """
-        for placeholder in self.placeholders:
-            if placeholder.placeholder_format.type == PP_PLACEHOLDER.BODY:
-                return placeholder
         return None
 
     @property
@@ -134,10 +122,7 @@ class NotesSlide(_BaseSlide):
         accommodate the common case of simply adding "notes" text to the
         notes "page".
         """
-        notes_placeholder = self.notes_placeholder
-        if notes_placeholder is None:
-            return None
-        return notes_placeholder.text_frame
+        return
 
     @lazyproperty
     def placeholders(self):
@@ -145,7 +130,7 @@ class NotesSlide(_BaseSlide):
         An instance of |NotesSlidePlaceholders| containing the sequence of
         placeholder shapes in this notes slide.
         """
-        return NotesSlidePlaceholders(self.element.spTree, self)
+        return
 
     @lazyproperty
     def shapes(self):
@@ -153,7 +138,7 @@ class NotesSlide(_BaseSlide):
         An instance of |NotesSlideShapes| containing the sequence of shape
         objects appearing on this notes slide.
         """
-        return NotesSlideShapes(self._element.spTree, self)
+        return
 
 
 class Slide(_BaseSlide):
@@ -171,7 +156,7 @@ class Slide(_BaseSlide):
         The same |_Background| object is returned on every call for the same
         slide object.
         """
-        return super(Slide, self).background
+        return
 
     @property
     def follow_master_background(self):
@@ -185,7 +170,7 @@ class Slide(_BaseSlide):
         Assigning |True| causes any custom background for this slide to be
         deleted and inheritance from the master restored.
         """
-        return self._element.bg is None
+        return
 
     @property
     def has_notes_slide(self):
@@ -195,7 +180,7 @@ class Slide(_BaseSlide):
         this property to test for a notes slide without the possible side
         effect of creating one.
         """
-        return self.part.has_notes_slide
+        return
 
     @property
     def notes_slide(self):
@@ -204,7 +189,7 @@ class Slide(_BaseSlide):
         not have a notes slide, one is created. The same single instance is
         returned on each call.
         """
-        return self.part.notes_slide
+        return
 
     @lazyproperty
     def placeholders(self):
@@ -212,7 +197,7 @@ class Slide(_BaseSlide):
         Instance of |SlidePlaceholders| containing sequence of placeholder
         shapes in this slide.
         """
-        return SlidePlaceholders(self._element.spTree, self)
+        return
 
     @lazyproperty
     def shapes(self):
@@ -220,7 +205,7 @@ class Slide(_BaseSlide):
         Instance of |SlideShapes| containing sequence of shape objects
         appearing on this slide.
         """
-        return SlideShapes(self._element.spTree, self)
+        return
 
     @property
     def slide_id(self):
@@ -230,77 +215,70 @@ class Slide(_BaseSlide):
         slide in the slide sequence is changed by adding, rearranging, or
         deleting slides.
         """
-        return self.part.slide_id
+        return
 
     @property
     def slide_layout(self):
         """
         |SlideLayout| object this slide inherits appearance from.
         """
-        return self.part.slide_layout
+        return
 
 
-class Slides(ParentedElementProxy):
+class Slides:
     """
     Sequence of slides belonging to an instance of |Presentation|, having
     list semantics for access to individual slides. Supports indexed access,
     len(), and iteration.
     """
 
-    def __init__(self, sldIdLst, prs):
-        super(Slides, self).__init__(sldIdLst, prs)
-        self._sldIdLst = sldIdLst
+    def __init__(self, slide_map: dict):
+        self.slides: dict = slide_map
 
     def __getitem__(self, idx):
         """
         Provide indexed access, (e.g. 'slides[0]').
         """
         try:
-            sldId = self._sldIdLst[idx]
+            slide_r_id = self.slides[idx]
         except IndexError:
             raise IndexError("slide index out of range")
-        return self.part.related_slide(sldId.rId)
+        return # self.part.related_slide(sldId.rId)
 
     def __iter__(self):
         """
         Support iteration (e.g. 'for slide in slides:').
         """
-        for sldId in self._sldIdLst:
-            yield self.part.related_slide(sldId.rId)
+        # for sldId in self._sldIdLst:
+        #     yield self.part.related_slide(sldId.rId)
 
     def __len__(self):
         """
         Support len() built-in function (e.g. 'len(slides) == 4').
         """
-        return len(self._sldIdLst)
+        # return len(self._sldIdLst)
 
     def add_slide(self, slide_layout):
         """
         Return a newly added slide that inherits layout from *slide_layout*.
         """
-        rId, slide = self.part.add_slide(slide_layout)
-        slide.shapes.clone_layout_placeholders(slide_layout)
-        self._sldIdLst.add_sldId(rId)
-        return slide
+       # return slide
+        pass
 
     def get(self, slide_id, default=None):
         """
         Return the slide identified by integer *slide_id* in this
         presentation, or *default* if not found.
         """
-        slide = self.part.get_slide(slide_id)
-        if slide is None:
-            return default
-        return slide
+        # return slide
+        pass
 
     def index(self, slide):
         """
         Map *slide* to an integer representing its zero-based position in
         this slide collection. Raises |ValueError| on *slide* not present.
         """
-        for idx, this_slide in enumerate(self):
-            if this_slide == slide:
-                return idx
+
         raise ValueError("%s is not in slide collection" % slide)
 
 
@@ -316,14 +294,8 @@ class SlideLayout(_BaseSlide):
         that should be cloned to a slide when the layout is applied to that
         slide.
         """
-        latent_ph_types = (
-            PP_PLACEHOLDER.DATE,
-            PP_PLACEHOLDER.FOOTER,
-            PP_PLACEHOLDER.SLIDE_NUMBER,
-        )
-        for ph in self.placeholders:
-            if ph.element.ph_type not in latent_ph_types:
-                yield ph
+                # yield ph
+        pass
 
     @lazyproperty
     def placeholders(self):
@@ -331,7 +303,7 @@ class SlideLayout(_BaseSlide):
         Instance of |LayoutPlaceholders| containing sequence of placeholder
         shapes in this slide layout, sorted in *idx* order.
         """
-        return LayoutPlaceholders(self._element.spTree, self)
+        pass
 
     @lazyproperty
     def shapes(self):
@@ -339,21 +311,22 @@ class SlideLayout(_BaseSlide):
         Instance of |LayoutShapes| containing the sequence of shapes
         appearing on this slide layout.
         """
-        return LayoutShapes(self._element.spTree, self)
+        return
 
     @property
     def slide_master(self):
         """
         Slide master from which this slide layout inherits properties.
         """
-        return self.part.slide_master
+        return
 
     @property
     def used_by_slides(self):
         """Tuple of slide objects based on this slide layout."""
         # ---getting Slides collection requires going around the horn a bit---
-        slides = self.part.package.presentation_part.presentation.slides
-        return tuple(s for s in slides if s.slide_layout == self)
+        # slides = self.part.package.presentation_part.presentation.slides
+        # return tuple(s for s in slides if s.slide_layout == self)
+        pass
 
 
 class SlideLayouts(ParentedElementProxy):
@@ -362,39 +335,31 @@ class SlideLayouts(ParentedElementProxy):
     Supports indexed access, len(), iteration, index() and remove().
     """
 
-    def __init__(self, sldLayoutIdLst, parent):
-        super(SlideLayouts, self).__init__(sldLayoutIdLst, parent)
-        self._sldLayoutIdLst = sldLayoutIdLst
+    def __init__(self):
+        return
 
     def __getitem__(self, idx):
         """
         Provide indexed access, (e.g. ``slide_layouts[2]``).
         """
-        try:
-            sldLayoutId = self._sldLayoutIdLst[idx]
-        except IndexError:
-            raise IndexError("slide layout index out of range")
-        return self.part.related_slide_layout(sldLayoutId.rId)
+        return
 
     def __iter__(self):
         """
         Generate a reference to each of the |SlideLayout| instances in the
         collection, in sequence.
         """
-        for sldLayoutId in self._sldLayoutIdLst:
-            yield self.part.related_slide_layout(sldLayoutId.rId)
+            #yield self.part.related_slide_layout(sldLayoutId.rId)
+        pass
 
     def __len__(self):
         """
         Support len() built-in function (e.g. 'len(slides) == 4').
         """
-        return len(self._sldLayoutIdLst)
+        return
 
     def get_by_name(self, name, default=None):
         """Return SlideLayout object having *name* or *default* if not found."""
-        for slide_layout in self:
-            if slide_layout.name == name:
-                return slide_layout
         return default
 
     def index(self, slide_layout):
@@ -402,9 +367,6 @@ class SlideLayouts(ParentedElementProxy):
 
         Raises ValueError if *slide_layout* is not present in this collection.
         """
-        for idx, this_layout in enumerate(self):
-            if slide_layout == this_layout:
-                return idx
         raise ValueError("layout not in this SlideLayouts collection")
 
     def remove(self, slide_layout):
@@ -416,19 +378,7 @@ class SlideLayouts(ParentedElementProxy):
         # ---raise if layout is in use---
         if slide_layout.used_by_slides:
             raise ValueError("cannot remove slide-layout in use by one or more slides")
-
-        # ---target layout is identified by its index in this collection---
-        target_idx = self.index(slide_layout)
-
-        # --remove layout from p:sldLayoutIds of its master
-        # --this stops layout from showing up, but doesn't remove it from package
-        target_sldLayoutId = self._sldLayoutIdLst.sldLayoutId_lst[target_idx]
-        self._sldLayoutIdLst.remove(target_sldLayoutId)
-
-        # --drop relationship from master to layout
-        # --this removes layout from package, along with everything (only) it refers to,
-        # --including images (not used elsewhere) and hyperlinks
-        slide_layout.slide_master.part.drop_rel(target_sldLayoutId.rId)
+        pass
 
 
 class SlideMaster(_BaseMaster):
@@ -441,7 +391,7 @@ class SlideMaster(_BaseMaster):
     @lazyproperty
     def slide_layouts(self):
         """|SlideLayouts| object providing access to this slide-master's layouts."""
-        return SlideLayouts(self._element.get_or_add_sldLayoutIdLst(), self)
+        return
 
 
 class SlideMasters(ParentedElementProxy):
@@ -517,5 +467,4 @@ class _Background(ElementProxy):
         If the background is already a fill, then accessing this property
         makes no changes to the current background.
         """
-        bgPr = self._cSld.get_or_add_bgPr()
-        return FillFormat.from_fill_parent(bgPr)
+        return

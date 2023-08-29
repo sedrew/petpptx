@@ -6,8 +6,8 @@ from pptx.enum.shapes import PROG_ID
 from pptx.opc.constants import CONTENT_TYPE as CT, RELATIONSHIP_TYPE as RT
 from pptx.opc.package import XmlPart
 from pptx.opc.packuri import PackURI
-from pptx.oxml.slide import CT_NotesMaster, CT_NotesSlide, CT_Slide
-from pptx.oxml.theme import CT_OfficeStyleSheet
+from pptx.models.slide import CT_NotesMaster, CT_NotesSlide, CT_Slide
+from pptx.models.theme import CT_OfficeStyleSheet
 from pptx.parts.chart import ChartPart
 from pptx.parts.embeddedpackage import EmbeddedPackagePart
 from pptx.slide import NotesMaster, NotesSlide, Slide, SlideLayout, SlideMaster

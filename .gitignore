@@ -11,3 +11,4 @@ _scratch/
 tags
 /tests/debug.py
 .idea
+.pytest_cache

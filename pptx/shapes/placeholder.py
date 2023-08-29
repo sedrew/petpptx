@@ -8,8 +8,8 @@ non-trivial class inheritance structure.
 """
 
 from pptx.enum.shapes import MSO_SHAPE_TYPE, PP_PLACEHOLDER
-from pptx.oxml.shapes.graphfrm import CT_GraphicalObjectFrame
-from pptx.oxml.shapes.picture import CT_Picture
+from pptx.models.shapes.graphfrm import CT_GraphicalObjectFrame
+from pptx.models.shapes.picture import CT_Picture
 from pptx.shapes.autoshape import Shape
 from pptx.shapes.graphfrm import GraphicFrame
 from pptx.shapes.picture import Picture

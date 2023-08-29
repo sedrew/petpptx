@@ -7,13 +7,26 @@ import posixpath
 import zipfile
 
 from pptx.compat import Container, is_string
-from pptx.exceptions import PackageNotFoundError
+from pptx.exc import PackageNotFoundError
 from pptx.opc.constants import CONTENT_TYPE as CT
-from pptx.opc.oxml import CT_Types, serialize_part_xml
+# from pptx.opc.oxml import CT_Types, serialize_part_xml
 from pptx.opc.packuri import CONTENT_TYPES_URI, PACKAGE_URI, PackURI
 from pptx.opc.shared import CaseInsensitiveDict
 from pptx.opc.spec import default_content_types
 from pptx.util import lazyproperty
+
+
+class _PhysPkgWriter(object):
+    """Base class for physical package writer objects."""
+
+    @classmethod
+    def factory(cls, pkg_file):
+        """Return |_PhysPkgWriter| subtype instance appropriage for `pkg_file`.
+
+        Currently the only subtype is `_ZipPkgWriter`, but a `_DirPkgWriter` could be
+        implemented or even a `_StreamPkgWriter`.
+        """
+        return _ZipPkgWriter(pkg_file)
 
 
 class PackageReader(Container):
@@ -23,7 +36,7 @@ class PackageReader(Container):
     structure, perhaps by unzipping a .pptx file.
     """
 
-    def __init__(self, pkg_file):
+    def __init__(self, pkg_file: str):
         self._pkg_file = pkg_file
 
     def __contains__(self, pack_uri):
@@ -60,7 +73,7 @@ class PackageWriter(object):
     instantiated.
     """
 
-    def __init__(self, pkg_file, pkg_rels, parts):
+    def __init__(self, pkg_file: PackageReader, pkg_rels, parts):
         self._pkg_file = pkg_file
         self._pkg_rels = pkg_rels
         self._parts = parts
@@ -82,7 +95,7 @@ class PackageWriter(object):
             self._write_pkg_rels(phys_writer)
             self._write_parts(phys_writer)
 
-    def _write_content_types_stream(self, phys_writer):
+    def _write_content_types_stream(self, phys_writer: _PhysPkgWriter):
         """Write `[Content_Types].xml` part to the physical package.
 
         This part must contain an appropriate content type lookup target for each part
@@ -90,7 +103,7 @@ class PackageWriter(object):
         """
         phys_writer.write(
             CONTENT_TYPES_URI,
-            serialize_part_xml(_ContentTypesItem.xml_for(self._parts)),
+            #serialize_part_xml(_ContentTypesItem.xml_for(self._parts)),
         )
 
     def _write_parts(self, phys_writer):
@@ -184,19 +197,6 @@ class _ZipPkgReader(_PhysPkgReader):
             return {PackURI("/%s" % name): z.read(name) for name in z.namelist()}
 
 
-class _PhysPkgWriter(object):
-    """Base class for physical package writer objects."""
-
-    @classmethod
-    def factory(cls, pkg_file):
-        """Return |_PhysPkgWriter| subtype instance appropriage for `pkg_file`.
-
-        Currently the only subtype is `_ZipPkgWriter`, but a `_DirPkgWriter` could be
-        implemented or even a `_StreamPkgWriter`.
-        """
-        return _ZipPkgWriter(pkg_file)
-
-
 class _ZipPkgWriter(_PhysPkgWriter):
     """Implements |PhysPkgWriter| interface for a zip-file (.pptx file) OPC package."""
 
@@ -250,14 +250,14 @@ class _ContentTypesItem(object):
         extension and Override elements are sorted by partname.
         """
         defaults, overrides = self._defaults_and_overrides
-        _types_elm = CT_Types.new()
-
-        for ext, content_type in sorted(defaults.items()):
-            _types_elm.add_default(ext, content_type)
-        for partname, content_type in sorted(overrides.items()):
-            _types_elm.add_override(partname, content_type)
-
-        return _types_elm
+        # _types_elm = CT_Types.new()
+        #
+        # for ext, content_type in sorted(defaults.items()):
+        #     _types_elm.add_default(ext, content_type)
+        # for partname, content_type in sorted(overrides.items()):
+        #     _types_elm.add_override(partname, content_type)
+        #
+        # return _types_elm
 
     @lazyproperty
     def _defaults_and_overrides(self):

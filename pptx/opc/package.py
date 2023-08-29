@@ -10,12 +10,18 @@ import collections
 
 from pptx.compat import is_string, Mapping
 from pptx.opc.constants import RELATIONSHIP_TARGET_MODE as RTM, RELATIONSHIP_TYPE as RT
-from pptx.opc.oxml import CT_Relationships, serialize_part_xml
+#from pptx.opc.oxml import CT_Relationships, serialize_part_xml
 from pptx.opc.packuri import CONTENT_TYPES_URI, PACKAGE_URI, PackURI
 from pptx.opc.serialized import PackageReader, PackageWriter
 from pptx.opc.shared import CaseInsensitiveDict
-from pptx.oxml import parse_xml
+# from pptx.oxml import parse_xml
 from pptx.util import lazyproperty
+
+
+# class PackageHandler:
+#
+#     def __init__(self):
+#         self.path_blob_map =
 
 
 class _RelatableMixin(object):
@@ -261,15 +267,15 @@ class _PackageLoader(object):
         load_rels(PACKAGE_URI, self._xml_rels_for(PACKAGE_URI))
         return xml_rels
 
-    def _xml_rels_for(self, partname):
-        """Return CT_Relationships object formed by parsing rels XML for `partname`.
-
-        A CT_Relationships object is returned in all cases. A part that has no
-        relationships receives an "empty" CT_Relationships object, i.e. containing no
-        `CT_Relationship` objects.
-        """
-        rels_xml = self._package_reader.rels_xml_for(partname)
-        return CT_Relationships.new() if rels_xml is None else parse_xml(rels_xml)
+    # def _xml_rels_for(self, partname):
+    #     """Return CT_Relationships object formed by parsing rels XML for `partname`.
+    #
+    #     A CT_Relationships object is returned in all cases. A part that has no
+    #     relationships receives an "empty" CT_Relationships object, i.e. containing no
+    #     `CT_Relationship` objects.
+    #     """
+    #     rels_xml = self._package_reader.rels_xml_for(partname)
+    #     return CT_Relationships.new() if rels_xml is None else parse_xml(rels_xml)
 
 
 class Part(_RelatableMixin):
@@ -398,15 +404,15 @@ class XmlPart(Part):
         super(XmlPart, self).__init__(partname, content_type, package)
         self._element = element
 
-    @classmethod
-    def load(cls, partname, content_type, package, blob):
-        """Return instance of `cls` loaded with parsed XML from `blob`."""
-        return cls(partname, content_type, package, element=parse_xml(blob))
+    # @classmethod
+    # def load(cls, partname, content_type, package, blob):
+    #     """Return instance of `cls` loaded with parsed XML from `blob`."""
+    #     return cls(partname, content_type, package, element=parse_xml(blob))
 
-    @property
-    def blob(self):
-        """bytes XML serialization of this part."""
-        return serialize_part_xml(self._element)
+    # @property
+    # def blob(self):
+    #     """bytes XML serialization of this part."""
+    #     return serialize_part_xml(self._element)
 
     @property
     def part(self):
@@ -468,17 +474,17 @@ class _ContentTypeMap(object):
             "no content-type for partname '%s' in [Content_Types].xml" % partname
         )
 
-    @classmethod
-    def from_xml(cls, content_types_xml):
-        """Return |_ContentTypeMap| instance populated from `content_types_xml`."""
-        types_elm = parse_xml(content_types_xml)
-        overrides = CaseInsensitiveDict(
-            (o.partName.lower(), o.contentType) for o in types_elm.override_lst
-        )
-        defaults = CaseInsensitiveDict(
-            (d.extension.lower(), d.contentType) for d in types_elm.default_lst
-        )
-        return cls(overrides, defaults)
+    # @classmethod
+    # def from_xml(cls, content_types_xml):
+    #     """Return |_ContentTypeMap| instance populated from `content_types_xml`."""
+    #     types_elm = parse_xml(content_types_xml)
+    #     overrides = CaseInsensitiveDict(
+    #         (o.partName.lower(), o.contentType) for o in types_elm.override_lst
+    #     )
+    #     defaults = CaseInsensitiveDict(
+    #         (d.extension.lower(), d.contentType) for d in types_elm.default_lst
+    #     )
+    #     return cls(overrides, defaults)
 
 
 class _Relationships(Mapping):
@@ -585,17 +591,17 @@ class _Relationships(Mapping):
         """
         return self._rels.pop(rId)
 
-    @property
-    def xml(self):
-        """bytes XML serialization of this relationship collection.
-
-        This value is suitable for storage as a .rels file in an OPC package. Includes
-        a `<?xml` header with encoding as UTF-8.
-        """
-        rels_elm = CT_Relationships.new()
-        for rel in self:
-            rels_elm.add_rel(rel.rId, rel.reltype, rel.target_ref, rel.is_external)
-        return rels_elm.xml
+    # @property
+    # def xml(self):
+    #     """bytes XML serialization of this relationship collection.
+    #
+    #     This value is suitable for storage as a .rels file in an OPC package. Includes
+    #     a `<?xml` header with encoding as UTF-8.
+    #     """
+    #     rels_elm = CT_Relationships.new()
+    #     for rel in self:
+    #         rels_elm.add_rel(rel.rId, rel.reltype, rel.target_ref, rel.is_external)
+    #     return rels_elm.xml
 
     def _add_relationship(self, reltype, target, is_external=False):
         """Return str rId of |_Relationship| newly added to spec."""

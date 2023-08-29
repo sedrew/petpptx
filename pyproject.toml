@@ -71,6 +71,3 @@ version = {attr = "pptx.__version__"}
 
 [tool.doc8]
 max-line-length = 88
-
-[tool.pytest.ini_options]
-addopts = "--color=yes --benchmark-skip"

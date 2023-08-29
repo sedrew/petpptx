@@ -9,8 +9,8 @@ from pptx.enum.chart import (
     XL_TICK_LABEL_POSITION,
     XL_TICK_MARK,
 )
-from pptx.oxml.ns import qn
-from pptx.oxml.simpletypes import ST_Orientation
+from pptx.models.ns import qn
+from pptx.models.simpletypes import ST_Orientation
 from pptx.shared import ElementProxy
 from pptx.text.text import Font, TextFrame
 from pptx.util import lazyproperty

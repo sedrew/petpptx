@@ -1,18 +1,31 @@
 # encoding: utf-8
 
 """Main presentation object."""
+from functools import cached_property
 
-from pptx.shared import PartElementProxy
-from pptx.slide import SlideMasters, Slides
+from pptx.models.xml_presentation import XmlPresentation
+from pptx.package import Package
+from pptx.slide import Slide
 from pptx.util import lazyproperty
 
 
-class Presentation(PartElementProxy):
+class Presentation:
     """PresentationML (PML) presentation.
 
     Not intended to be constructed directly. Use :func:`pptx.Presentation` to open or
     create a presentation.
     """
+    def __init__(self, pkg, model):
+        self._pkg: Package = pkg
+        self._model: XmlPresentation = model
+
+    @property
+    def model(self) -> XmlPresentation:
+        return self._model
+
+    @model.setter
+    def model(self, model: XmlPresentation):
+        self._model = model
 
     @property
     def core_properties(self):
@@ -20,7 +33,7 @@ class Presentation(PartElementProxy):
         Instance of |CoreProperties| holding the read/write Dublin Core
         document properties for this presentation.
         """
-        return self.part.core_properties
+        pass
 
     @property
     def notes_master(self):
@@ -29,30 +42,29 @@ class Presentation(PartElementProxy):
         does not have a notes master, one is created from a default template
         and returned. The same single instance is returned on each call.
         """
-        return self.part.notes_master
+        pass
 
     def save(self, file):
         """
         Save this presentation to *file*, where *file* can be either a path
         to a file (a string) or a file-like object.
         """
-        self.part.save(file)
+        self._pkg_file.save(file)
 
     @property
-    def slide_height(self):
+    def slide_height(self) -> int:
         """
         Height of slides in this presentation, in English Metric Units (EMU).
         Returns |None| if no slide width is defined. Read/write.
         """
-        sldSz = self._element.sldSz
-        if sldSz is None:
-            return None
-        return sldSz.cy
+        return self._model.slide_size.cy
 
     @slide_height.setter
-    def slide_height(self, height):
-        sldSz = self._element.get_or_add_sldSz()
-        sldSz.cy = height
+    def slide_height(self, height: int):
+        if 100_000_000 <= height or height < 1_000_000:
+            raise ValueError("Value should be more 1_000_000 but less 100_000_000")
+        self._model.slide_size.cy = height
+
 
     @property
     def slide_layouts(self):
@@ -63,7 +75,7 @@ class Presentation(PartElementProxy):
         This property is a convenience for the common case where the
         presentation has only a single slide master.
         """
-        return self.slide_masters[0].slide_layouts
+        pass
 
     @property
     def slide_master(self):
@@ -72,36 +84,30 @@ class Presentation(PartElementProxy):
         presentations have only a single slide master. This property provides
         simpler access in that common case.
         """
-        return self.slide_masters[0]
+        pass
 
     @lazyproperty
     def slide_masters(self):
         """
         Sequence of |SlideMaster| objects belonging to this presentation
         """
-        return SlideMasters(self._element.get_or_add_sldMasterIdLst(), self)
+        pass
 
     @property
-    def slide_width(self):
+    def slide_width(self) -> int:
         """
         Width of slides in this presentation, in English Metric Units (EMU).
         Returns |None| if no slide width is defined. Read/write.
         """
-        sldSz = self._element.sldSz
-        if sldSz is None:
-            return None
-        return sldSz.cx
+        return self._model.slide_size.cx
 
     @slide_width.setter
-    def slide_width(self, width):
-        sldSz = self._element.get_or_add_sldSz()
-        sldSz.cx = width
+    def slide_width(self, width: int):
+        self._model.slide_size.cx = width
 
-    @lazyproperty
+    @cached_property
     def slides(self):
         """
         |Slides| object containing the slides in this presentation.
         """
-        sldIdLst = self._element.get_or_add_sldIdLst()
-        self.part.rename_slide_parts([sldId.rId for sldId in sldIdLst])
-        return Slides(sldIdLst, self)
+        return Slide

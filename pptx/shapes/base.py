@@ -8,7 +8,7 @@ from pptx.action import ActionSetting
 from pptx.dml.effect import ShadowFormat
 from pptx.shared import ElementProxy
 from pptx.util import lazyproperty
-from pptx.oxml.simpletypes import XsdBoolean
+from pptx.models.simpletypes import XsdBoolean
 
 
 class BaseShape(object):

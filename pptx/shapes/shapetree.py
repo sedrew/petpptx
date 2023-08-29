@@ -8,10 +8,10 @@ from pptx.compat import BytesIO
 from pptx.enum.shapes import PP_PLACEHOLDER, PROG_ID
 from pptx.media import SPEAKER_IMAGE_BYTES, Video
 from pptx.opc.constants import CONTENT_TYPE as CT
-from pptx.oxml.ns import qn
-from pptx.oxml.shapes.graphfrm import CT_GraphicalObjectFrame
-from pptx.oxml.shapes.picture import CT_Picture
-from pptx.oxml.simpletypes import ST_Direction
+from pptx.models.ns import qn
+from pptx.models.shapes.graphfrm import CT_GraphicalObjectFrame
+from pptx.models.shapes.picture import CT_Picture
+from pptx.models.simpletypes import ST_Direction
 from pptx.shapes.autoshape import AutoShapeType, Shape
 from pptx.shapes.base import BaseShape
 from pptx.shapes.connector import Connector

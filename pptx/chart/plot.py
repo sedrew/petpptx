@@ -11,8 +11,8 @@ from __future__ import absolute_import, print_function, unicode_literals
 from .category import Categories
 from .datalabel import DataLabels
 from ..enum.chart import XL_CHART_TYPE as XL
-from ..oxml.ns import qn
-from ..oxml.simpletypes import ST_BarDir, ST_Grouping
+from ..models.ns import qn
+from ..models.simpletypes import ST_BarDir, ST_Grouping
 from .series import SeriesCollection
 from ..util import lazyproperty
 

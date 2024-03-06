@@ -7,7 +7,7 @@ import os
 from pptx.compat import BytesIO
 from pptx.enum.shapes import PP_PLACEHOLDER, PROG_ID
 from pptx.media import SPEAKER_IMAGE_BYTES, Video
-from pptx.opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 from pptx.models.ns import qn
 from pptx.models.shapes.graphfrm import CT_GraphicalObjectFrame
 from pptx.models.shapes.picture import CT_Picture

@@ -3,7 +3,7 @@
 """Chart part objects, including Chart and Charts."""
 
 from pptx.chart.chart import Chart
-from pptx.opc.constants import CONTENT_TYPE as CT, RELATIONSHIP_TYPE as RT
+from pptx.models.constants import CONTENT_TYPE as CT, RELATIONSHIP_TYPE as RT
 from pptx.opc.package import XmlPart
 from pptx.parts.embeddedpackage import EmbeddedXlsxPart
 from pptx.util import lazyproperty

@@ -7,7 +7,7 @@ from pptx.dml.fill import FillFormat
 from pptx.enum.dml import MSO_FILL
 from pptx.enum.lang import MSO_LANGUAGE_ID
 from pptx.enum.text import MSO_AUTO_SIZE, MSO_UNDERLINE
-from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+from pptx.models.constants import RELATIONSHIP_TYPE as RT
 from pptx.models.simpletypes import ST_TextWrappingType
 from pptx.shapes import Subshape
 from pptx.text.fonts import FontFiles

@@ -7,7 +7,7 @@ from pptx.models.xml_default_text_style import DefaultTextStyle
 
 
 @dataclass
-class XmlSlide:
+class XmlSlide(AbstractModel):
     slide_id: int = field(metadata=dict(type="Attribute", name="id"))
     r_id: str = field(
         metadata=dict(
@@ -19,7 +19,7 @@ class XmlSlide:
 
 
 @dataclass
-class XmlSlides:
+class XmlSlides(AbstractModel):
     slide: Optional[XmlSlide] = field(
         default=None,
         metadata=dict(
@@ -30,7 +30,7 @@ class XmlSlides:
 
 
 @dataclass
-class XmlSlideSize:
+class XmlSlideSize(AbstractModel):
     cx: int = field(
         default=12192000,
         metadata=dict(
@@ -48,7 +48,7 @@ class XmlSlideSize:
 
 
 @dataclass
-class XmlNotesSize:
+class XmlNotesSize(AbstractModel):
     cx: int = field(
         default=6858000,
         metadata={
@@ -66,7 +66,7 @@ class XmlNotesSize:
 
 
 @dataclass
-class SlideMaster:
+class SlideMaster(AbstractModel):
     slide_id: int = field(
         metadata={
             "name": "id",
@@ -83,7 +83,7 @@ class SlideMaster:
 
 
 @dataclass
-class SlidesMaster:
+class SlidesMaster(AbstractModel):
     slide_master: Optional[SlideMaster] = field(
         default=None,
         metadata={

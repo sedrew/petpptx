@@ -7,13 +7,12 @@ presentations to and from a .pptx file.
 """
 
 import collections
+from collections.abc import Mapping
 
-from pptx.compat import is_string, Mapping
-from pptx.opc.constants import RELATIONSHIP_TARGET_MODE as RTM, RELATIONSHIP_TYPE as RT
+from pptx.models.constants import RELATIONSHIP_TARGET_MODE as RTM, RELATIONSHIP_TYPE as RT
 #from pptx.opc.oxml import CT_Relationships, serialize_part_xml
 from pptx.opc.packuri import CONTENT_TYPES_URI, PACKAGE_URI, PackURI
 from pptx.opc.serialized import PackageReader, PackageWriter
-from pptx.opc.shared import CaseInsensitiveDict
 # from pptx.oxml import parse_xml
 from pptx.util import lazyproperty
 
@@ -373,7 +372,7 @@ class Part(_RelatableMixin):
     def _blob_from_file(self, file):
         """Return bytes of `file`, which is either a str path or a file-like object."""
         # --- a str `file` is assumed to be a path ---
-        if is_string(file):
+        if isinstance(file, str):
             with open(file, "rb") as f:
                 return f.read()
 

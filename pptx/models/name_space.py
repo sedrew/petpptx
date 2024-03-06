@@ -1,8 +1,9 @@
 from dataclasses import dataclass
+from pptx.models.abstract_dataclass import AbstractModel
 
 
 @dataclass
-class NameSpaces:
+class NameSpaces(AbstractModel):
     _name_space = {
         "a": "http://schemas.openxmlformats.org/drawingml/2006/main",
         "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",

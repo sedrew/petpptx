@@ -9,7 +9,7 @@ from behave import given, when, then
 
 from pptx import Presentation
 from pptx.compat import BytesIO
-from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+from pptx.models.constants import RELATIONSHIP_TYPE as RT
 from pptx.util import Inches
 
 from helpers import saved_pptx_path, test_file, test_pptx

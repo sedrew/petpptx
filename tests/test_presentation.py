@@ -1,8 +1,3 @@
-from dataclasses import dataclass
-
-from pptx.opc.constants import RELATIONSHIP_TYPE
-from pptx.opc.packuri import PackURI
-from pptx.opc.serialized import PackageReader, _ZipPkgWriter
 from pptx import Presentation
 from functools import partial
 

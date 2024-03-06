@@ -2,9 +2,11 @@ from dataclasses import field, dataclass
 from functools import partial
 from typing import Optional
 
+from pptx.models.abstract_dataclass import AbstractModel
+
 
 @dataclass
-class SchemeClr:
+class SchemeClr(AbstractModel):
     class Meta:
         name = "schemeClr"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -19,7 +21,7 @@ class SchemeClr:
 
 
 @dataclass
-class SolidFill:
+class SolidFill(AbstractModel):
     class Meta:
         name = "solidFill"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -35,7 +37,7 @@ class SolidFill:
 
 
 @dataclass
-class Latin:
+class Latin(AbstractModel):
     class Meta:
         name = "latin"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -50,7 +52,7 @@ class Latin:
 
 
 @dataclass
-class EastAsian:
+class EastAsian(AbstractModel):
     class Meta:
         name = "ea"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -65,7 +67,7 @@ class EastAsian:
 
 
 @dataclass
-class ComplexScript:
+class ComplexScript(AbstractModel):
     class Meta:
         name = "cs"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -80,7 +82,7 @@ class ComplexScript:
 
 
 @dataclass
-class DefRpr:
+class DefRpr(AbstractModel):
     """Default Text Run Properties"""
     class Meta:
         name = "defRPr"
@@ -133,7 +135,7 @@ class DefRpr:
 
 
 @dataclass
-class BaseLevelPr:
+class BaseLevelPr(AbstractModel):
     class Meta:
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
 
@@ -202,7 +204,7 @@ class BaseLevelPr:
 
 
 @dataclass
-class DefPpr:
+class DefPpr(AbstractModel):
     class Meta:
         name = "defPPr"
         namespace = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -218,7 +220,7 @@ class DefPpr:
 
 
 @dataclass
-class DefaultTextStyle:
+class DefaultTextStyle(AbstractModel):
     class Meta:
         name = "defaultTextStyle"
         namespace = "http://schemas.openxmlformats.org/presentationml/2006/main"

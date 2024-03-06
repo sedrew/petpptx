@@ -5,8 +5,7 @@ from functools import cached_property
 from io import BytesIO
 from pathlib import Path
 
-from pptx.opc.constants import RELATIONSHIP_TYPE as RT
-from pptx.opc.package import OpcPackage
+from pptx.models.constants import RELATIONSHIP_TYPE as RT
 from pptx.opc.packuri import PackURI
 from pptx.parts.coreprops import CorePropertiesPart
 from pptx.parts.image import Image, ImagePart

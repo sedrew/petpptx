@@ -6,7 +6,7 @@
 """
 
 from pptx.enum.shapes import PROG_ID
-from pptx.opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 from pptx.opc.package import Part
 
 

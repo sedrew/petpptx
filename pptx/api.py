@@ -13,7 +13,7 @@ import os
 from io import BytesIO
 from pathlib import Path
 
-from .opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 from .opc.packuri import PackURI
 from .package import Package
 from .presentation import Presentation

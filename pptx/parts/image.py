@@ -14,7 +14,7 @@ except ImportError:
 
 from pptx.compat import BytesIO, is_string
 from pptx.opc.package import Part
-from pptx.opc.spec import image_content_types
+from pptx.models.spec import image_content_types
 from pptx.util import lazyproperty
 
 

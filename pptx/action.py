@@ -3,7 +3,7 @@
 """Objects related to mouse click and hover actions on a shape or text."""
 
 from pptx.enum.action import PP_ACTION
-from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+from pptx.models.constants import RELATIONSHIP_TYPE as RT
 from pptx.shapes import Subshape
 from pptx.util import lazyproperty
 

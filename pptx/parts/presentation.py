@@ -2,7 +2,7 @@
 
 """Presentation part, the main part in a .pptx package."""
 
-from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+from pptx.models.constants import RELATIONSHIP_TYPE as RT
 from pptx.opc.package import XmlPart
 from pptx.opc.packuri import PackURI
 from pptx.parts.slide import NotesMasterPart, SlidePart

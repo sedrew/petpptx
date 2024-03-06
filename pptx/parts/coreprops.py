@@ -4,7 +4,7 @@
 
 from datetime import datetime
 
-from pptx.opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 from pptx.opc.package import XmlPart
 from pptx.opc.packuri import PackURI
 

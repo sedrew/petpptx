@@ -8,11 +8,11 @@ import zipfile
 
 from pptx.compat import Container, is_string
 from pptx.exc import PackageNotFoundError
-from pptx.opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 # from pptx.opc.oxml import CT_Types, serialize_part_xml
 from pptx.opc.packuri import CONTENT_TYPES_URI, PACKAGE_URI, PackURI
 from pptx.opc.shared import CaseInsensitiveDict
-from pptx.opc.spec import default_content_types
+from pptx.models.spec import default_content_types
 from pptx.util import lazyproperty
 
 

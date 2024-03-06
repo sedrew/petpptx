@@ -9,7 +9,7 @@ import hashlib
 import os
 
 from .compat import is_string
-from .opc.constants import CONTENT_TYPE as CT
+from pptx.models.constants import CONTENT_TYPE as CT
 from .util import lazyproperty
 
 

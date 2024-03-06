@@ -1,0 +1,15 @@
+[project]
+name = "petpptx"
+version = "2.0.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Sergei Malygin", email = "sedrew2010@gmail.com"},
+]
+dependencies = []
+requires-python = ">=3.8.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
